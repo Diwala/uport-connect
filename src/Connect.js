@@ -315,7 +315,7 @@ class Connect {
    */
   async requestVerificationSignature (unsignedClaim, sub, id = 'verSigReq', sendOpts) {
     await this.signAndUploadProfile()
-    this.credentials.createVerificationSignatureRequest(unsignedClaim, {sub, aud: this.did, callbackUrl: this.genCallback(id), vc: this.vc})
+    this.credentials.createVerificationSignatureRequest(unsignedClaim, {sub, aud: this.did, callbackUrl: this.genCallback(id), vc: this.vc}, unsignedClaim.exp)
       .then(jwt => this.send(jwt, id, sendOpts))
   }
 
